@@ -1,0 +1,35 @@
+{% extends "layout/base" %}
+{% extends ajax ? 'ajax' : 'layout/base' %}
+
+{% block title %} DataTables - Server {% endblock %}
+
+{% block content %}
+<div class="head-wrap">
+  <p> {{ type }} 렌더링입니다.</p>
+  <div class="data-filter-wrap">
+    <select id="searchType">
+      <option value="regId">이름</option>
+      <option value="subject">제목</option>
+      <option value="contents">본문</option>
+    </select>
+    <input type="text" id="searchValue" placeholder="검색어"/>
+    <button onclick="searchFunc()">검색</button>
+  </div>
+
+</div>
+<div>
+  <table id="server-side-render" class="display table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>번호</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>작성일</th>
+
+    </tr>
+    </thead>
+
+  </table>
+</div>
+
+{% endblock %}

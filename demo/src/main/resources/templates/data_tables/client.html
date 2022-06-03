@@ -1,0 +1,25 @@
+{% extends "layout/base" %}
+{% extends ajax ? 'ajax' : 'layout/base' %}
+
+{% block title %} DataTables - Client {% endblock %}
+
+{% block content %}
+<div>
+  <p> {{ type }} 렌더링입니다.</p>
+</div>
+<div>
+  <table id="client-side-render" class="display table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+      </tr>
+    </thead>
+
+  </table>
+
+</div>
+
+{% endblock %}

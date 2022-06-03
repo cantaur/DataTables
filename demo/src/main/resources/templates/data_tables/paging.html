@@ -1,0 +1,62 @@
+{% extends "layout/base" %}
+<!--{% extends ajax ? 'ajax' : 'layout/base' %}-->
+
+{% block title %} DataTables - using pagination {% endblock %}
+
+{% block content %}
+<input type="hidden" id="current-page" value="{{pageInfo.start}}">
+<div class="head-wrap">
+  <p> {{ type }} 입니다.</p>
+
+</div>
+<div>
+  <table id="use-paging" class="display table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>번호</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>작성일</th>
+
+    </tr>
+    </thead>
+
+  </table>
+  {{ contents | raw}}
+</div>
+
+<script>
+  var start = document.getElementById('current-page').value;
+  var usePaging = null;
+
+  $(document).ready( function () {
+
+    usePaging = $('#use-paging').DataTable( {
+      ordering: false,
+      pageLength: 10,
+      pagingType : "full_numbers",
+      bLengthChange: true,
+      bPaginate: false,
+      bServerSide: true,
+      processing: true,
+      searching: false,
+      ajax: {
+        url : "/bbs/contents/use/paging",
+        dataSrc: 'data',
+        data:{
+          start : start,
+          pageSize : 10
+        }
+      },
+      columns: [
+        {data : "seqNo"} ,
+        {data : "subject"},
+        {data : "regId"},
+        {data : "regDate"}
+      ]
+    } );
+
+  } );
+</script>
+
+{% endblock %}
