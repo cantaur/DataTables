@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eveningbread.demo.mapper.board.BoardContentsMapper">
+
+    <select id="countTotalBbsContents" resultType="int" parameterType="BoardContentsReq">
+        SELECT
+            count(1)
+        FROM
+            tb_ma_bbs_contents
+        WHERE
+            1=1
+            AND SITE_CD = #{siteCd}
+            AND BBS_ID=#{bbsId}
+    </select>
+
+    <select id="countBbsContentsTarget" resultType="int" parameterType="BoardContentsReq">
+        SELECT
+            count(1)
+        FROM
+            tb_ma_bbs_contents
+        WHERE
+            1=1
+            AND SITE_CD = #{siteCd}
+            AND BBS_ID=#{bbsId}
+            <if test="searchType!=null and searchType !='' and  searchValue != null and searchValue !='' " >
+                <if test="searchType.equalsIgnoreCase('subject') " >
+                    AND SUBJECT LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+                <if test="searchType.equalsIgnoreCase('contents') " >
+                    AND CONTENTS LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+                <if test="searchType.equalsIgnoreCase('regId') " >
+                    AND LOWER(REG_ID) LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+                <if test="searchType.equalsIgnoreCase('regNm') " >
+                    AND REG_NM LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+            </if>
+    </select>
+
+    <select id="selectBbsContentsTargetList" resultType="BoardContentsDto" parameterType="BoardContentsReq">
+        SELECT
+            *
+        FROM
+             tb_ma_bbs_contents
+        WHERE
+            1=1
+            AND SITE_CD = #{siteCd}
+            AND BBS_ID=#{bbsId}
+        ORDER BY BBS_CONTENTS_TYPE ASC,
+                 BBS_NO        DESC,
+                 ORDER_NO      ASC,
+                 SEQ_NO        DESC
+    </select>
+
+    <select id="selectBbsContentsListServerSide" resultType="BoardContentsDto" parameterType="BoardContentsReq">
+        SELECT
+            *
+        FROM
+            tb_ma_bbs_contents
+        WHERE
+            1=1
+            AND SITE_CD = #{siteCd}
+            AND BBS_ID=#{bbsId}
+            <if test="searchType!=null and searchType !='' and  searchValue != null and searchValue !='' " >
+                <if test="searchType.equalsIgnoreCase('subject') " >
+                    AND SUBJECT LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+                <if test="searchType.equalsIgnoreCase('contents') " >
+                    AND CONTENTS LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+                <if test="searchType.equalsIgnoreCase('regId') " >
+                    AND LOWER(REG_ID) LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+                <if test="searchType.equalsIgnoreCase('regNm') " >
+                    AND REG_NM LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+            </if>
+        ORDER BY BBS_CONTENTS_TYPE ASC,
+        BBS_NO        DESC,
+        ORDER_NO      ASC,
+        SEQ_NO        DESC
+        LIMIT #{start}, #{pageSize}
+    </select>
+
+
+
+    <select id="selectBbsContentsList" resultType="BoardContentsDto" parameterType="BoardSearchReq">
+        SELECT
+            *
+        FROM
+            tb_ma_bbs_contents
+        WHERE
+            1=1
+            AND SITE_CD = #{siteCd}
+            AND BBS_ID=#{bbsId}
+            <if test="searchType!=null and searchType !='' and  searchValue != null and searchValue !='' " >
+                <if test="searchType.equalsIgnoreCase('subject') " >
+                    AND SUBJECT LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+                <if test="searchType.equalsIgnoreCase('contents') " >
+                    AND CONTENTS LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+                <if test="searchType.equalsIgnoreCase('regId') " >
+                    AND LOWER(REG_ID) LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+                <if test="searchType.equalsIgnoreCase('regNm') " >
+                    AND REG_NM LIKE CONCAT('%',#{searchValue},'%')
+                </if>
+            </if>
+        ORDER BY 1,2,3 DESC LIMIT #{start}, #{pageSize}
+    </select>
+
+
+
+</mapper>

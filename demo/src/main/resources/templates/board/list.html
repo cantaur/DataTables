@@ -1,0 +1,36 @@
+{% extends "layout/base" %}
+
+{% block content %}
+<div>
+    <form name="frm" method="get">
+        <input type="hidden" name="pageNo" value="{{ search.pageNo }}">
+    </form>
+    Total : {{ search.totalCount }}
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">제목</th>
+            <th scope="col">등록ID</th>
+            <th scope="col">등록일</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for board in boardList %}
+        <tr>
+            <th scope="row">{{ board.seqNo }}</th>
+            <td>{{ board.subject }}</td>
+            <td>{{ board.regId }}</td>
+            <td>{{ board.regDate }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">데이터가 없습니다.</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <!--   페이징 처리 -->
+    {% include '/layout/paging' %}
+</div>
+{% endblock %}
