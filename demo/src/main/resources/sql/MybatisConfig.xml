@@ -4,9 +4,9 @@
 
 <configuration>
     <typeAliases>
-        <package name="com.eveningbread.demo.model.board"/>
+        <package name="com.eveningbread.demo.model"/>
         <package name="com.eveningbread.demo.model.req"/>
         <package name="com.eveningbread.demo.model.resp"/>
-<!--        <package name="com.eveningbread.demo.source.model.resp"/>-->
+
     </typeAliases>
 </configuration>

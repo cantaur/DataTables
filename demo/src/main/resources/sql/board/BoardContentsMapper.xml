@@ -38,7 +38,7 @@
             </if>
     </select>
 
-    <select id="selectBbsContentsTargetList" resultType="BoardContentsDto" parameterType="BoardContentsReq">
+    <select id="selectBbsContentsTargetList" resultType="BbsContentsTargetDto" parameterType="BoardContentsReq">
         SELECT
             *
         FROM
@@ -53,7 +53,7 @@
                  SEQ_NO        DESC
     </select>
 
-    <select id="selectBbsContentsListServerSide" resultType="BoardContentsDto" parameterType="BoardContentsReq">
+    <select id="selectBbsContentsListServerSide" resultType="BbsContentsTargetDto" parameterType="BoardContentsReq">
         SELECT
             *
         FROM
@@ -85,7 +85,7 @@
 
 
 
-    <select id="selectBbsContentsList" resultType="BoardContentsDto" parameterType="BoardSearchReq">
+    <select id="selectBbsContentsList" resultType="BbsContentsTargetDto" parameterType="BoardSearchReq">
         SELECT
             *
         FROM
@@ -113,4 +113,195 @@
 
 
 
+    <insert id="insertBbsContents" parameterType="BbsContentsTargetDto" useGeneratedKeys="true" keyProperty="seqNo">
+        INSERT INTO tb_ma_bbs_contents(
+            SITE_CD,
+            BBS_ID,
+            SEQ_NO,
+            BBS_NO,
+            DEPTH_NO,
+            ORDER_NO,
+            PARENT_NO,
+            SUBJECT,
+            KEYWORD,
+            CONTENTS,
+            RFILE_NM1,
+            SFILE_NM1,
+            FILE_PATH1,
+            FILE_SIZE1,
+            RFILE_NM2,
+            SFILE_NM2,
+            FILE_PATH2,
+            FILE_SIZE2,
+            RFILE_NM3,
+            SFILE_NM3,
+            FILE_PATH3,
+            FILE_SIZE3,
+            RFILE_NM4,
+            SFILE_NM4,
+            FILE_PATH4,
+            FILE_SIZE4,
+            RFILE_NM5,
+            SFILE_NM5,
+            FILE_PATH5,
+            FILE_SIZE5,
+            HIT_CNT,
+            SEC_YN,
+            BBS_CONTENTS_TYPE,
+            EDITOR_TYPE,
+            COMMENT_YN,
+            REG_PASSWD,
+            REG_NM,
+            REMOTE_IP,
+            TEMP_IMG,
+            REG_ID,
+            REG_DATE,
+            MOD_ID,
+            MOD_DATE
+        )
+        VALUES
+            <foreach collection="list" index="index" item="item" separator=",">
+            (
+                #{item.siteCd}
+                ,#{item.bbsId}
+                ,#{item.seqNo}
+                ,#{item.bbsNo}
+                ,#{item.depthNo}
+                ,#{item.orderNo}
+                ,#{item.parentNo}
+                ,#{item.subject}
+                ,#{item.keyword}
+                ,#{item.contents}
+                ,#{item.rfileNm1}
+                ,#{item.sfileNm1}
+                ,#{item.filePath1}
+                ,#{item.fileSize1}
+                ,#{item.rfileNm2}
+                ,#{item.sfileNm2}
+                ,#{item.filePath2}
+                ,#{item.fileSize2}
+                ,#{item.rfileNm3}
+                ,#{item.sfileNm3}
+                ,#{item.filePath3}
+                ,#{item.fileSize3}
+                ,#{item.rfileNm4}
+                ,#{item.sfileNm4}
+                ,#{item.filePath4}
+                ,#{item.fileSize4}
+                ,#{item.rfileNm5}
+                ,#{item.sfileNm5}
+                ,#{item.filePath5}
+                ,#{item.fileSize5}
+                ,#{item.hitCnt}
+                ,#{item.secYn}
+                ,#{item.bbsContentsType}
+                ,#{item.editorType}
+                ,#{item.commentYn}
+                ,#{item.regPasswd}
+                ,#{item.regNm}
+                ,#{item.remoteIp}
+                ,#{item.tempImg}
+                ,#{item.regId}
+                ,#{item.regDate}
+                ,#{item.modId}
+                ,#{item.modDate}
+            )
+            </foreach>
+    </insert>
+
+
+
+    <insert id="insertBbsContentsSingle" parameterType="BbsContentsTargetDto" useGeneratedKeys="true" keyProperty="seqNo">
+        INSERT INTO tb_ma_bbs_contents(
+            SITE_CD,
+            BBS_ID,
+            SEQ_NO,
+            BBS_NO,
+            DEPTH_NO,
+            ORDER_NO,
+            PARENT_NO,
+            SUBJECT,
+            KEYWORD,
+            CONTENTS,
+            RFILE_NM1,
+            SFILE_NM1,
+            FILE_PATH1,
+            FILE_SIZE1,
+            RFILE_NM2,
+            SFILE_NM2,
+            FILE_PATH2,
+            FILE_SIZE2,
+            RFILE_NM3,
+            SFILE_NM3,
+            FILE_PATH3,
+            FILE_SIZE3,
+            RFILE_NM4,
+            SFILE_NM4,
+            FILE_PATH4,
+            FILE_SIZE4,
+            RFILE_NM5,
+            SFILE_NM5,
+            FILE_PATH5,
+            FILE_SIZE5,
+            HIT_CNT,
+            SEC_YN,
+            BBS_CONTENTS_TYPE,
+            EDITOR_TYPE,
+            COMMENT_YN,
+            REG_PASSWD,
+            REG_NM,
+            REMOTE_IP,
+            TEMP_IMG,
+            REG_ID,
+            REG_DATE,
+            MOD_ID,
+            MOD_DATE
+        )
+        VALUES
+            (
+            #{siteCd}
+            ,#{bbsId}
+            ,#{seqNo}
+            ,#{bbsNo}
+            ,#{depthNo}
+            ,#{orderNo}
+            ,#{parentNo}
+            ,#{subject}
+            ,#{keyword}
+            ,#{contents}
+            ,#{rfileNm1}
+            ,#{sfileNm1}
+            ,#{filePath1}
+            ,#{fileSize1}
+            ,#{rfileNm2}
+            ,#{sfileNm2}
+            ,#{filePath2}
+            ,#{fileSize2}
+            ,#{rfileNm3}
+            ,#{sfileNm3}
+            ,#{filePath3}
+            ,#{fileSize3}
+            ,#{rfileNm4}
+            ,#{sfileNm4}
+            ,#{filePath4}
+            ,#{fileSize4}
+            ,#{rfileNm5}
+            ,#{sfileNm5}
+            ,#{filePath5}
+            ,#{fileSize5}
+            ,#{hitCnt}
+            ,#{secYn}
+            ,#{bbsContentsType}
+            ,#{editorType}
+            ,#{commentYn}
+            ,#{regPasswd}
+            ,#{regNm}
+            ,#{remoteIp}
+            ,#{tempImg}
+            ,#{regId}
+            ,#{regDate}
+            ,#{modId}
+            ,#{modDate}
+            )
+    </insert>
 </mapper>

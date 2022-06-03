@@ -1,7 +1,7 @@
 package com.eveningbread.demo.controller;
 
 import com.eveningbread.demo.service.BoardService;
-import com.eveningbread.demo.model.board.BoardContentsDto;
+import com.eveningbread.demo.model.board.BbsContentsTargetDto;
 import com.eveningbread.demo.model.req.BoardContentsReq;
 import com.eveningbread.demo.model.resp.PageResp;
 import org.springframework.stereotype.Controller;
@@ -82,7 +82,7 @@ public class MainController {
         boardContentsReq.setTestType("pebble-template");
         boardContentsReq.makePagination();
 
-        PageResp<BoardContentsDto> boardResp = boardService.selectBoardList(boardContentsReq);
+        PageResp<BbsContentsTargetDto> boardResp = boardService.selectBoardList(boardContentsReq);
 
         ModelAndView mav = new ModelAndView("board/test");
         mav.addObject("boardList", boardResp.getList());

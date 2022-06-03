@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BoardMapperScanConfig {
 
-    private static final String BASE_PACKAGE = "com.eveningbread.demo.mapper";
-    private String sqlSessionFactoryBeanName = "targetSqlSessionFactory";
+    private static final String BASE_PACKAGE = "com.eveningbread.demo.mapper.board";
+    private String sqlSessionFactoryBeanName = "SqlSessionFactory";
 
-    @Bean(name="targetMapperScan")
+    @Bean()
     public MapperScannerConfigurer targetScanner(){
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setBasePackage(BASE_PACKAGE);

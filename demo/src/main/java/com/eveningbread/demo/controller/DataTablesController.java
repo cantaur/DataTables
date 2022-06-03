@@ -1,7 +1,7 @@
 package com.eveningbread.demo.controller;
 
 import com.eveningbread.demo.service.BoardService;
-import com.eveningbread.demo.model.board.BoardContentsDto;
+import com.eveningbread.demo.model.board.BbsContentsTargetDto;
 import com.eveningbread.demo.model.req.BoardContentsReq;
 import com.eveningbread.demo.model.resp.DataTablesResp;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ public class DataTablesController {
      * @throws Exception
      */
     @GetMapping("/bbs/contents/client")
-    public List<BoardContentsDto> selectBbsContentsByClientSide(
+    public List<BbsContentsTargetDto> selectBbsContentsByClientSide(
             @ModelAttribute("search") BoardContentsReq boardContentsReq
     ) throws Exception{
         return boardService.selectBbsContentsTargetList(boardContentsReq);
@@ -54,7 +54,7 @@ public class DataTablesController {
         boardContentsReq.setTotalCount(totalCount);
         boardContentsReq.setStart(Integer.parseInt(request.getParameter("start")));
         boardContentsReq.setPageSize(Integer.parseInt(request.getParameter("length")));
-        List<BoardContentsDto> boardList = boardService.selectBbsContentsListServerSide(boardContentsReq);
+        List<BbsContentsTargetDto> boardList = boardService.selectBbsContentsListServerSide(boardContentsReq);
 
         DataTablesResp dataTablesResp = new DataTablesResp();
         dataTablesResp.setData(boardList);
@@ -78,7 +78,7 @@ public class DataTablesController {
         int filteredCount = boardService.countBbsContentsTarget(boardContentsReq);
 
         boardContentsReq.setTotalCount(totalCount);
-        List<BoardContentsDto> boardList = boardService.selectBbsContentsListServerSide(boardContentsReq);
+        List<BbsContentsTargetDto> boardList = boardService.selectBbsContentsListServerSide(boardContentsReq);
 
         DataTablesResp dataTablesResp = new DataTablesResp();
         dataTablesResp.setData(boardList);

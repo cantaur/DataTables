@@ -36,7 +36,7 @@ public class BoardDataSourceConfig {
     }
 
 
-    @Bean(name = "targetDataSource")
+    @Bean()
     @ConfigurationProperties(prefix = "spring.datasource.target")
     public DataSource dataSource() {
         HikariDataSource dataSource = DataSourceBuilder.create().type(HikariDataSource.class).build();
@@ -45,7 +45,7 @@ public class BoardDataSourceConfig {
     }
 
 
-    @Bean(name = "targetSqlSessionFactory")
+    @Bean(name = "SqlSessionFactory")
     public SqlSessionFactory getSqlSessionFactory() throws Exception{
 
         org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
@@ -65,14 +65,14 @@ public class BoardDataSourceConfig {
         return sessionFactoryBean.getObject();
     }
 
-    @Bean(name = "targetSqlSessionTemplate")
-    public SqlSessionTemplate sqlSession(@Qualifier("targetSqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
+    @Bean()
+    public SqlSessionTemplate sqlSession(@Qualifier("SqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory, ExecutorType.BATCH);
     }
 
 
-    @Bean(name="targetTransactionManager")
-    public TransactionManager transactionManager(@Qualifier("targetDataSource") DataSource dataSource) {
+    @Bean()
+    public TransactionManager transactionManager( DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 

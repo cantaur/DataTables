@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BoardContentsDto {
+public class BbsContentsTargetDto {
 
 
     private String siteCd;
