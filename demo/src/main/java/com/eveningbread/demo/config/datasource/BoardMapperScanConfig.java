@@ -12,7 +12,7 @@ public class BoardMapperScanConfig {
     private String sqlSessionFactoryBeanName = "SqlSessionFactory";
 
     @Bean()
-    public MapperScannerConfigurer targetScanner(){
+    public MapperScannerConfigurer boardScanner(){
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setBasePackage(BASE_PACKAGE);
         mapperScannerConfigurer.setAnnotationClass(Mapper.class);

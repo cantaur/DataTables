@@ -3,15 +3,17 @@ package com.eveningbread.demo.model.req;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class BoardContentsReq extends Pagination{
-    private String siteCd = "13";
-    private Long bbsId = 27L;
-    private String subject;
-    private String contents;
-    private String regId			;
-    private String regNm;
+
+    private Long seqNo;
+    private String boardTitle;
+    private String boardContent;
+    private String boardWriter;
+    private LocalDateTime boardRegdate;
     private String searchType;
     private String searchValue;
     private String testType = "data-tables";

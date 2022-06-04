@@ -19,9 +19,9 @@
         {% for board in boardList %}
         <tr>
             <th scope="row">{{ board.seqNo }}</th>
-            <td>{{ board.subject }}</td>
-            <td>{{ board.regId }}</td>
-            <td>{{ board.regDate }}</td>
+            <td>{{ board.boardTitle }}</td>
+            <td>{{ board.boardWriter }}</td>
+            <td>{{ board.boardRegdate }}</td>
         </tr>
         {% else %}
         <tr>

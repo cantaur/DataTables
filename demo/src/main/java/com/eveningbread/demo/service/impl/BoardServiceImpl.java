@@ -4,7 +4,7 @@ import com.eveningbread.demo.common.paging.PaginationInfo;
 import com.eveningbread.demo.common.paging.PaginationRenderer;
 import com.eveningbread.demo.service.BoardService;
 import com.eveningbread.demo.mapper.board.BoardContentsMapper;
-import com.eveningbread.demo.model.board.BbsContentsTargetDto;
+import com.eveningbread.demo.model.board.BbsContentsDto;
 import com.eveningbread.demo.model.req.BoardContentsReq;
 import com.eveningbread.demo.model.req.BoardSearchReq;
 import com.eveningbread.demo.model.resp.PageResp;
@@ -34,28 +34,28 @@ public class BoardServiceImpl implements BoardService {
         return boardContentsMapper.countBbsContentsTarget(boardContentsReq);
     }
     @Override
-    public List<BbsContentsTargetDto> selectBbsContentsList(BoardSearchReq boardSearchReq){
+    public List<BbsContentsDto> selectBbsContentsList(BoardSearchReq boardSearchReq){
         return boardContentsMapper.selectBbsContentsList(boardSearchReq);
     }
 
     @Override
-    public List<BbsContentsTargetDto> selectBbsContentsTargetList(BoardContentsReq boardContentsReq){
+    public List<BbsContentsDto> selectBbsContentsTargetList(BoardContentsReq boardContentsReq){
         return boardContentsMapper.selectBbsContentsTargetList(boardContentsReq);
     }
 
     @Override
-    public List<BbsContentsTargetDto> selectBbsContentsListServerSide(BoardContentsReq boardContentsReq){
+    public List<BbsContentsDto> selectBbsContentsListServerSide(BoardContentsReq boardContentsReq){
         return boardContentsMapper.selectBbsContentsListServerSide(boardContentsReq);
     }
 
 
     @Override
-    public PageResp<BbsContentsTargetDto> selectBoardList(BoardContentsReq boardContentsReq){
+    public PageResp<BbsContentsDto> selectBoardList(BoardContentsReq boardContentsReq){
 
-        List<BbsContentsTargetDto> boardDtoList= boardContentsMapper.selectBbsContentsListServerSide(boardContentsReq);
+        List<BbsContentsDto> boardDtoList= boardContentsMapper.selectBbsContentsListServerSide(boardContentsReq);
         String pageContents = this.getPageInfo(boardContentsReq);
 
-        PageResp<BbsContentsTargetDto> pageResp = new PageResp<>();
+        PageResp<BbsContentsDto> pageResp = new PageResp<>();
         pageResp.setList(boardDtoList);
         pageResp.setPageContents(pageContents);
         return pageResp;

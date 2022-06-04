@@ -37,7 +37,7 @@ public class BoardDataSourceConfig {
 
 
     @Bean()
-    @ConfigurationProperties(prefix = "spring.datasource.target")
+    @ConfigurationProperties(prefix = "spring.datasource.board")
     public DataSource dataSource() {
         HikariDataSource dataSource = DataSourceBuilder.create().type(HikariDataSource.class).build();
 //        dataSource.setConnectionTimeout();

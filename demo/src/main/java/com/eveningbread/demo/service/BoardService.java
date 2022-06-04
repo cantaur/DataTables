@@ -1,6 +1,6 @@
 package com.eveningbread.demo.service;
 
-import com.eveningbread.demo.model.board.BbsContentsTargetDto;
+import com.eveningbread.demo.model.board.BbsContentsDto;
 import com.eveningbread.demo.model.req.BoardContentsReq;
 import com.eveningbread.demo.model.req.BoardSearchReq;
 import com.eveningbread.demo.model.resp.PageResp;
@@ -12,13 +12,13 @@ public interface BoardService {
 
     int countBbsContentsTarget(BoardContentsReq boardContentsReq);
 
-    List<BbsContentsTargetDto> selectBbsContentsList(BoardSearchReq boardSearchReq);
+    List<BbsContentsDto> selectBbsContentsList(BoardSearchReq boardSearchReq);
 
-    List<BbsContentsTargetDto> selectBbsContentsTargetList(BoardContentsReq boardContentsReq);
+    List<BbsContentsDto> selectBbsContentsTargetList(BoardContentsReq boardContentsReq);
 
-    List<BbsContentsTargetDto> selectBbsContentsListServerSide(BoardContentsReq boardContentsReq);
+    List<BbsContentsDto> selectBbsContentsListServerSide(BoardContentsReq boardContentsReq);
 
-    PageResp<BbsContentsTargetDto> selectBoardList(BoardContentsReq boardContentsReq);
+    PageResp<BbsContentsDto> selectBoardList(BoardContentsReq boardContentsReq);
 
     String getPageInfo(BoardContentsReq boardContentsReq);
 }
